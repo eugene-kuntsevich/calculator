@@ -14,14 +14,19 @@ public class MainClass {
 
         while (true) {
             try {
-                String numberOfOperation = ConsoleHelper.readString();
+                int numberOfOperation = Integer.parseInt(ConsoleHelper.readString());
                 double resultOperation = 0;
 
-                if (numberOfOperation.equals("1")) resultOperation = ArithmeticOperation.addition();
-                else if (numberOfOperation.equals("2")) resultOperation = ArithmeticOperation.subtraction();
-                else if (numberOfOperation.equals("3")) resultOperation = ArithmeticOperation.multiplication();
-                else if (numberOfOperation.equals("4")) resultOperation = ArithmeticOperation.division();
-                else if (numberOfOperation.equals("5")) resultOperation = ArithmeticOperation.involution();
+                if (numberOfOperation == TypesArithmeticOperation.ADDITION.ordinal() + 1)
+                    resultOperation = ArithmeticOperation.addition();
+                else if (numberOfOperation == TypesArithmeticOperation.SUBTRACTION.ordinal() + 1)
+                    resultOperation = ArithmeticOperation.subtraction();
+                else if (numberOfOperation == TypesArithmeticOperation.MULTIPLICATION.ordinal() + 1)
+                    resultOperation = ArithmeticOperation.multiplication();
+                else if (numberOfOperation == TypesArithmeticOperation.DIVISION.ordinal() + 1)
+                    resultOperation = ArithmeticOperation.division();
+                else if (numberOfOperation == TypesArithmeticOperation.INVOLUTION.ordinal() + 1)
+                    resultOperation = ArithmeticOperation.involution();
                 else {
                     ConsoleHelper.writeMessage("You entered no number of operation. Please, try again.");
                     continue;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ConsoleHelper {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private static String operationItems = "\n1. addition; \n2. subtraction;\n3. multiplication; \n4. division;\n5. involution.";
+    private static String operationItems = "\n1. addition (for example: 3+2=5.0); \n2. subtraction (for example: 3-2=1.0);\n3. multiplication (for example: 3*2=6.0); \n4. division (for example: 3/2=1.5);\n5. involution (for example: 3^2=9.0).";
 
     public static String readString() throws ExitException {
         String inputString = "";
@@ -79,7 +79,7 @@ public class ConsoleHelper {
     }
 
     public static void welcomeMessage() {
-        writeMessage("Hello. I'm Calculator and I can to do next operation: " + operationItems +
+        writeMessage("Hello. I'm Calculator and I can do next operation: " + operationItems +
                 "\nEnter number of operation and press \"Enter\". Also if you want to interrupt your work enter \"exit\" in any time and press \"Enter\"");
     }
 
