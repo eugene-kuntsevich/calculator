@@ -2,7 +2,6 @@ package com.jgp7;
 
 import com.jgp7.exception.DivisionByZeroException;
 import com.jgp7.exception.ExitException;
-
 import java.io.IOException;
 
 /**
