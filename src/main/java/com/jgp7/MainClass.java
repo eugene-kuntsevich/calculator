@@ -39,6 +39,9 @@ public class MainClass {
             } catch (DivisionByZeroException e) {
                 ConsoleHelper.divisionByZeroExceptionMessage();
                 continue;
+            } catch (NumberFormatException e) {
+                ConsoleHelper.writeMessage("You entered no digit or \"exit\". Please, enter digit of operation or \"exit\" and press \"Enter\" again.");
+                continue;
             }
 
             ConsoleHelper.executeNextOperationMessage();
