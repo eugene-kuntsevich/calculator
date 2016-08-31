@@ -2,6 +2,7 @@ package com.jgp7;
 
 import com.jgp7.exception.DivisionByZeroException;
 import com.jgp7.exception.ExitException;
+
 import java.io.IOException;
 
 /**
@@ -38,6 +39,9 @@ public class MainClass {
                 break;
             } catch (DivisionByZeroException e) {
                 ConsoleHelper.divisionByZeroExceptionMessage();
+                continue;
+            } catch (NumberFormatException e) {
+                ConsoleHelper.writeMessage("You entered no digit or \"exit\". Please, enter digit of operation or \"exit\" and press \"Enter\" again.");
                 continue;
             }
 
