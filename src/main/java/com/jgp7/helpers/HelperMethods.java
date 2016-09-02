@@ -1,7 +1,8 @@
 package com.jgp7.helpers;
 
-import com.jgp7.TypesArithmeticOperation;
+import com.jgp7.calculator.TypesArithmeticOperation;
 import com.jgp7.exception.DivisionByZeroException;
+import com.jgp7.exception.EnterNoNumberOperationException;
 import com.jgp7.exception.ExitException;
 
 import java.io.BufferedReader;
@@ -21,7 +22,7 @@ public class HelperMethods {
 
         try {
             inputString = reader.readLine();
-            if (inputString.equalsIgnoreCase("exit")) throw new ExitException();
+            if (inputString.equalsIgnoreCase("e")) throw new ExitException();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,16 +33,16 @@ public class HelperMethods {
     public static List<Double> readTwoDigits() throws ExitException {
         List<Double> digits = new LinkedList();
 
-        ConsoleMessenger.writeMessage("Enter first digit and press \"Enter\" after entered data.");
+        ConsoleMessenger.enterFirstDigitMessage();
 
         while (true) {
             try {
                 String inputString = HelperMethods.readString();
                 digits.add(Double.valueOf(inputString));
                 if (digits.size() == 2) break;
-                ConsoleMessenger.writeMessage("Enter second digit and press \"Enter\" after entered data.");
+                ConsoleMessenger.enterSecondDigitMessage();
             } catch (NumberFormatException e) {
-                ConsoleMessenger.writeMessage("Error! You entered no digit. Try to repeat all again. Enter first digit and press \"Enter\" after entered data.");
+                ConsoleMessenger.repeatAgainMessage();
                 digits.clear();
             }
         }
@@ -54,11 +55,11 @@ public class HelperMethods {
 
         while (true) {
             try {
-                ConsoleMessenger.writeMessage("Enter first digit and press \"Enter\" after entered data.");
+                ConsoleMessenger.enterFirstDigitMessage();
                 String inputString = HelperMethods.readString();
                 digits.add(Double.valueOf(inputString));
 
-                ConsoleMessenger.writeMessage("Enter second digit and press \"Enter\" after entered data.");
+                ConsoleMessenger.enterSecondDigitMessage();
                 inputString = HelperMethods.readString();
 
                 if (Double.valueOf(inputString) == 0)
@@ -68,7 +69,7 @@ public class HelperMethods {
                     break;
                 }
             } catch (NumberFormatException e) {
-                ConsoleMessenger.writeMessage("Error! You entered no digit. Try to repeat all again.");
+                ConsoleMessenger.repeatAgainMessage();
                 digits.clear();
             }
         }
@@ -80,7 +81,19 @@ public class HelperMethods {
         return Integer.parseInt(HelperMethods.readString());
     }
 
-    public static TypesArithmeticOperation getOperation(int i) {
-        return TypesArithmeticOperation.values()[i - 1];
+    public static TypesArithmeticOperation getOperation(int i) throws EnterNoNumberOperationException {
+        if (i <= TypesArithmeticOperation.values().length)
+            return TypesArithmeticOperation.values()[i - 1];
+        else throw new EnterNoNumberOperationException();
     }
+
+    public static void sleep(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
