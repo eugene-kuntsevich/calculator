@@ -1,27 +1,88 @@
 package com.jgp7.helpers;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  * Created by Evgeni Kuntsevich on 30.08.2016.
  */
 public class ConsoleMessenger {
-    private static String operationItems = "\n1. addition (for example: 3+2=5.0); \n2. subtraction (for example: 3-2=1.0);\n3. multiplication (for example: 3*2=6.0); \n4. division (for example: 3/2=1.5);\n5. involution (for example: 3^2=9.0).";
-    
-    public static void writeMessage(String message) {
-        System.out.println(message);
+    private static Locale locale = Locale.ENGLISH;
+    private static final String PATH_PROPERTIES = "src/main/resources/messages.properties";
+    private static ResourceBundle resourceBundle;
+
+    private static void getBundle() {
+        if (resourceBundle == null) {
+            resourceBundle = ResourceBundle.getBundle("messages", locale);
+        } else return;
     }
 
     public static void welcomeMessage() {
-        writeMessage("Hello. I'm Calculator and I can do next operation: " + operationItems +
-                "\nEnter number of operation and press \"Enter\". Also if you want to interrupt your work enter \"exit\" in any time and press \"Enter\"");
+        getBundle();
+        System.out.println(resourceBundle.getString("welcome.message") +
+                resourceBundle.getString("operation.items") +
+                resourceBundle.getString("select.operation"));
     }
 
     public static void executeNextOperationMessage() {
-        writeMessage("\nIf you want to execute one more operation, enter number of operation and press \"Enter\":" + operationItems +
-                "\nAlso if you want to interrupt your work enter \"exit\" and press \"Enter\" ");
+        System.out.println(resourceBundle.getString("next.operation") +
+                resourceBundle.getString("operation.items") +
+                resourceBundle.getString("select.operation"));
     }
 
     public static void divisionByZeroExceptionMessage() {
-        writeMessage("Error! Division by zero. You can select operation again: " + operationItems +
-                "\nEnter number of operation and press \"Enter\". Also if you want to interrupt your work enter \"exit\" and press \"Enter\"");
+        System.out.println(resourceBundle.getString("division.zero") +
+                resourceBundle.getString("operation.items") +
+                resourceBundle.getString("select.operation"));
+    }
+
+    public static void enterNoNumberOperationMessage() {
+        System.out.println(resourceBundle.getString("enter.no.number"));
+    }
+
+    public static void resultOperationMessage() {
+        System.out.print(resourceBundle.getString("result.operation"));
+    }
+
+    public static void byeMessage() {
+        System.out.println(resourceBundle.getString("good.bye"));
+    }
+
+    public static void numberFormatExceptionMessage() {
+        System.out.println(resourceBundle.getString("entered.no.digit") +
+                resourceBundle.getString("operation.items") +
+                resourceBundle.getString("select.operation"));
+    }
+
+    public static void repeatAgainMessage() {
+        System.out.println(resourceBundle.getString("repeat.again"));
+    }
+
+    public static void enterFirstDigitMessage() {
+        System.out.println(resourceBundle.getString("enter.first.digit"));
+    }
+
+    public static void enterSecondDigitMessage() {
+        System.out.println(resourceBundle.getString("enter.second.digit"));
+    }
+
+    public static void selectSubtractionMessage() {
+        System.out.println(resourceBundle.getString("select.subtraction"));
+    }
+
+    public static void selectDivisionMessage() {
+        System.out.println(resourceBundle.getString("select.division"));
+    }
+
+    public static void selectAdditionMessage() {
+        System.out.println(resourceBundle.getString("select.addition"));
+    }
+
+    public static void selectMultiplicationMessage() {
+        System.out.println(resourceBundle.getString("select.multiplication"));
+    }
+
+    public static void selectInvolutionMessage() {
+        System.out.println(resourceBundle.getString("select.involution"));
     }
 }
