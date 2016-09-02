@@ -1,6 +1,7 @@
-package com.jgp7;
+package com.jgp7.calculator;
 
 import com.jgp7.exception.DivisionByZeroException;
+import com.jgp7.exception.EnterNoNumberOperationException;
 import com.jgp7.exception.ExitException;
 import com.jgp7.helpers.ConsoleMessenger;
 import com.jgp7.helpers.HelperMethods;
@@ -18,7 +19,7 @@ public class Calculator {
                 TypesArithmeticOperation operation =
                         HelperMethods.getOperation(numberOfOperation);
 
-                double resultOperation;
+                double resultOperation = 0;
 
                 switch (operation) {
                     case ADDITION:
@@ -36,24 +37,26 @@ public class Calculator {
                     case INVOLUTION:
                         resultOperation = ArithmeticOperation.involution();
                         break;
-                    default:
-                        ConsoleMessenger.writeMessage("You entered no number of operation. Please, try again.");
-                        continue;
                 }
 
-                ConsoleMessenger.writeMessage("Result of operation = " + String.valueOf(resultOperation));
+                ConsoleMessenger.resultOperationMessage();
+                System.out.println(" " + resultOperation);
 
             } catch (ExitException e) {
-                ConsoleMessenger.writeMessage("Good bye!");
+                ConsoleMessenger.byeMessage();
                 break;
             } catch (DivisionByZeroException e) {
                 ConsoleMessenger.divisionByZeroExceptionMessage();
                 continue;
             } catch (NumberFormatException e) {
-                ConsoleMessenger.writeMessage("You entered no digit or \"exit\". Please, enter digit of operation or \"exit\" and press \"Enter\" again.");
+                ConsoleMessenger.numberFormatExceptionMessage();
+                continue;
+            } catch (EnterNoNumberOperationException e) {
+                ConsoleMessenger.enterNoNumberOperationMessage();
                 continue;
             }
 
+            HelperMethods.sleep();
             ConsoleMessenger.executeNextOperationMessage();
         }
     }
