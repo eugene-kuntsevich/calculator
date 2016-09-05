@@ -14,31 +14,31 @@ public class ArithmeticOperation {
     private static List<Double> digits;
 
     public static double division() throws ExitException, DivisionByZeroException {
-        ConsoleMessenger.selectDivisionMessage();
+        ConsoleMessenger.selectedDivision();
         digits = HelperMethods.readTwoDigitsDivision();
         return digits.get(0) / digits.get(1);
     }
 
     public static double addition() throws ExitException {
-        ConsoleMessenger.selectAdditionMessage();
+        ConsoleMessenger.selectedAddition();
         digits = HelperMethods.readTwoDigits();
         return digits.get(0) + digits.get(1);
     }
 
     public static double subtraction() throws ExitException {
-        ConsoleMessenger.selectSubtractionMessage();
+        ConsoleMessenger.selectedSubtraction();
         digits = HelperMethods.readTwoDigits();
         return digits.get(0) - digits.get(1);
     }
 
     public static double multiplication() throws ExitException {
-        ConsoleMessenger.selectMultiplicationMessage();
+        ConsoleMessenger.selectedMultiplication();
         digits = HelperMethods.readTwoDigits();
         return digits.get(0) * digits.get(1);
     }
 
     public static double involution() throws ExitException {
-        ConsoleMessenger.selectInvolutionMessage();
+        ConsoleMessenger.selectedInvolution();
         digits = HelperMethods.readTwoDigits();
         return Math.pow(digits.get(0), digits.get(1));
     }
