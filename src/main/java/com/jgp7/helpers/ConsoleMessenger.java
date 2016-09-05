@@ -7,82 +7,80 @@ import java.util.ResourceBundle;
  * Created by Evgeni Kuntsevich on 30.08.2016.
  */
 public class ConsoleMessenger {
-    private static Locale locale = Locale.ENGLISH;
-    private static final String PATH_PROPERTIES = "src/main/resources/messages.properties";
     private static ResourceBundle resourceBundle;
 
     private static void getBundle() {
         if (resourceBundle == null) {
-            resourceBundle = ResourceBundle.getBundle("messages", locale);
+            resourceBundle = ResourceBundle.getBundle("messages", Locale.ENGLISH);
         } else return;
     }
 
-    public static void welcomeMessage() {
+    public static void start() {
         getBundle();
         System.out.println(resourceBundle.getString("welcome.message") +
                 resourceBundle.getString("operation.items") +
                 resourceBundle.getString("select.operation"));
     }
 
-    public static void executeNextOperationMessage() {
+    public static void selectNextOperation() {
         System.out.println(resourceBundle.getString("next.operation") +
                 resourceBundle.getString("operation.items") +
                 resourceBundle.getString("select.operation"));
     }
 
-    public static void divisionByZeroExceptionMessage() {
+    public static void divisionByZeroException() {
         System.out.println(resourceBundle.getString("division.zero") +
                 resourceBundle.getString("operation.items") +
                 resourceBundle.getString("select.operation"));
     }
 
-    public static void enterNoNumberOperationMessage() {
+    public static void enterNoNumberOperation() {
         System.out.println(resourceBundle.getString("enter.no.number"));
     }
 
-    public static void resultOperationMessage() {
+    public static void resultOperation() {
         System.out.print(resourceBundle.getString("result.operation"));
     }
 
-    public static void byeMessage() {
-        System.out.println(resourceBundle.getString("good.bye"));
+    public static void exit() {
+        System.out.println(resourceBundle.getString("exit"));
     }
 
-    public static void numberFormatExceptionMessage() {
+    public static void numberFormatException() {
         System.out.println(resourceBundle.getString("entered.no.digit") +
                 resourceBundle.getString("operation.items") +
                 resourceBundle.getString("select.operation"));
     }
 
-    public static void repeatAgainMessage() {
+    public static void repeatAgain() {
         System.out.println(resourceBundle.getString("repeat.again"));
     }
 
-    public static void enterFirstDigitMessage() {
+    public static void enterFirstDigit() {
         System.out.println(resourceBundle.getString("enter.first.digit"));
     }
 
-    public static void enterSecondDigitMessage() {
+    public static void enterSecondDigit() {
         System.out.println(resourceBundle.getString("enter.second.digit"));
     }
 
-    public static void selectSubtractionMessage() {
+    public static void selectedSubtraction() {
         System.out.println(resourceBundle.getString("select.subtraction"));
     }
 
-    public static void selectDivisionMessage() {
+    public static void selectedDivision() {
         System.out.println(resourceBundle.getString("select.division"));
     }
 
-    public static void selectAdditionMessage() {
+    public static void selectedAddition() {
         System.out.println(resourceBundle.getString("select.addition"));
     }
 
-    public static void selectMultiplicationMessage() {
+    public static void selectedMultiplication() {
         System.out.println(resourceBundle.getString("select.multiplication"));
     }
 
-    public static void selectInvolutionMessage() {
+    public static void selectedInvolution() {
         System.out.println(resourceBundle.getString("select.involution"));
     }
 }
