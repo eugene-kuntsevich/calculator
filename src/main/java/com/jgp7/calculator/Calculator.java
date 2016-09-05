@@ -11,7 +11,7 @@ import com.jgp7.helpers.HelperMethods;
  */
 public class Calculator {
     public void run() {
-        ConsoleMessenger.welcomeMessage();
+        ConsoleMessenger.start();
 
         while (true) {
             try {
@@ -39,25 +39,25 @@ public class Calculator {
                         break;
                 }
 
-                ConsoleMessenger.resultOperationMessage();
+                ConsoleMessenger.resultOperation();
                 System.out.println(" " + resultOperation);
 
             } catch (ExitException e) {
-                ConsoleMessenger.byeMessage();
+                ConsoleMessenger.exit();
                 break;
             } catch (DivisionByZeroException e) {
-                ConsoleMessenger.divisionByZeroExceptionMessage();
+                ConsoleMessenger.divisionByZeroException();
                 continue;
             } catch (NumberFormatException e) {
-                ConsoleMessenger.numberFormatExceptionMessage();
+                ConsoleMessenger.numberFormatException();
                 continue;
             } catch (EnterNoNumberOperationException e) {
-                ConsoleMessenger.enterNoNumberOperationMessage();
+                ConsoleMessenger.enterNoNumberOperation();
                 continue;
             }
 
             HelperMethods.sleep();
-            ConsoleMessenger.executeNextOperationMessage();
+            ConsoleMessenger.selectNextOperation();
         }
     }
 }
