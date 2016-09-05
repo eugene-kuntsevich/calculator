@@ -22,7 +22,6 @@ public class HelperMethods {
 
         try {
             inputString = reader.readLine();
-            if (inputString.equalsIgnoreCase("e")) throw new ExitException();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,16 +32,16 @@ public class HelperMethods {
     public static List<Double> readTwoDigits() throws ExitException {
         List<Double> digits = new LinkedList();
 
-        ConsoleMessenger.enterFirstDigitMessage();
+        ConsoleMessenger.enterFirstDigit();
 
         while (true) {
             try {
                 String inputString = HelperMethods.readString();
                 digits.add(Double.valueOf(inputString));
                 if (digits.size() == 2) break;
-                ConsoleMessenger.enterSecondDigitMessage();
+                ConsoleMessenger.enterSecondDigit();
             } catch (NumberFormatException e) {
-                ConsoleMessenger.repeatAgainMessage();
+                ConsoleMessenger.repeatAgain();
                 digits.clear();
             }
         }
@@ -55,11 +54,11 @@ public class HelperMethods {
 
         while (true) {
             try {
-                ConsoleMessenger.enterFirstDigitMessage();
+                ConsoleMessenger.enterFirstDigit();
                 String inputString = HelperMethods.readString();
                 digits.add(Double.valueOf(inputString));
 
-                ConsoleMessenger.enterSecondDigitMessage();
+                ConsoleMessenger.enterSecondDigit();
                 inputString = HelperMethods.readString();
 
                 if (Double.valueOf(inputString) == 0)
@@ -69,7 +68,7 @@ public class HelperMethods {
                     break;
                 }
             } catch (NumberFormatException e) {
-                ConsoleMessenger.repeatAgainMessage();
+                ConsoleMessenger.repeatAgain();
                 digits.clear();
             }
         }
@@ -78,7 +77,9 @@ public class HelperMethods {
     }
 
     public static int getNumber() throws ExitException {
-        return Integer.parseInt(HelperMethods.readString());
+        int number = Integer.parseInt(readString());
+        if (number == 0) throw new ExitException();
+        return number;
     }
 
     public static TypesArithmeticOperation getOperation(int i) throws EnterNoNumberOperationException {
@@ -87,13 +88,11 @@ public class HelperMethods {
         else throw new EnterNoNumberOperationException();
     }
 
-    public static void sleep(){
+    public static void sleep() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
-
 }
