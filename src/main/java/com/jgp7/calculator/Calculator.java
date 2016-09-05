@@ -40,7 +40,8 @@ public class Calculator {
                 }
 
                 ConsoleMessenger.resultOperation();
-                System.out.println(" " + resultOperation);
+                System.out.println(" " +
+                        HelperMethods.getNumberWithoutZeroAfterDot(resultOperation));
 
             } catch (ExitException e) {
                 ConsoleMessenger.exit();

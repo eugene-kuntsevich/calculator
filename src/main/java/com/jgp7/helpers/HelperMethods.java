@@ -95,4 +95,12 @@ public class HelperMethods {
             e.printStackTrace();
         }
     }
+
+    public static String getNumberWithoutZeroAfterDot(Double digit) {
+        String digitToString = String.valueOf(digit);
+        String[] s = digitToString.split("\\.");
+
+        if (s[1].equals("0")) return s[0];
+        return digitToString;
+    }
 }
