@@ -1,5 +1,7 @@
 package com.jgp7.helpers;
 
+import com.jgp7.exception.ExitException;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -9,29 +11,39 @@ import java.util.ResourceBundle;
 public class ConsoleMessenger {
     private static ResourceBundle resourceBundle;
 
-    private static void getBundle() {
-        if (resourceBundle == null) {
-            resourceBundle = ResourceBundle.getBundle("messages", Locale.ENGLISH);
-        } else return;
+    public static void selectLanguage() throws ExitException {
+        resourceBundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+
+        System.out.println(resourceBundle.getString("available.language") +
+                                resourceBundle.getString("languages")+
+                                    resourceBundle.getString("select.language"));
+        resourceBundle = HelperMethods.getBundleForLocale();
+    }
+
+    public static void selectedEnglish(){
+        System.out.println(resourceBundle.getString("select.english"));
+    }
+
+    public static void selectedRussian(){
+        System.out.println(resourceBundle.getString("select.russian"));
     }
 
     public static void start() {
-        getBundle();
         System.out.println(resourceBundle.getString("welcome.message") +
-                resourceBundle.getString("operation.items") +
-                resourceBundle.getString("select.operation"));
+                                resourceBundle.getString("operation.items") +
+                                    resourceBundle.getString("select.operation"));
     }
 
     public static void selectNextOperation() {
         System.out.println(resourceBundle.getString("next.operation") +
-                resourceBundle.getString("operation.items") +
-                resourceBundle.getString("select.operation"));
+                                resourceBundle.getString("operation.items") +
+                                    resourceBundle.getString("select.operation"));
     }
 
     public static void divisionByZeroException() {
         System.out.println(resourceBundle.getString("division.zero") +
-                resourceBundle.getString("operation.items") +
-                resourceBundle.getString("select.operation"));
+                                resourceBundle.getString("operation.items") +
+                                    resourceBundle.getString("select.operation"));
     }
 
     public static void enterNoNumberOperation() {
@@ -47,9 +59,9 @@ public class ConsoleMessenger {
     }
 
     public static void numberFormatException() {
-        System.out.println(resourceBundle.getString("entered.no.digit") +
-                resourceBundle.getString("operation.items") +
-                resourceBundle.getString("select.operation"));
+        System.out.println(resourceBundle.getString("entered.no.digit")+
+                                resourceBundle.getString("operation.items") +
+                                    resourceBundle.getString("select.operation"));
     }
 
     public static void repeatAgain() {
@@ -82,5 +94,13 @@ public class ConsoleMessenger {
 
     public static void selectedInvolution() {
         System.out.println(resourceBundle.getString("select.involution"));
+    }
+
+    public static void enteredNoNumberLanguage() {
+        System.out.println(resourceBundle.getString("entered.no.number.language"));
+    }
+
+    public static void exitLang() {
+        System.out.println(resourceBundle.getString("exit.languages"));
     }
 }

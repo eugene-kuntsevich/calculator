@@ -10,14 +10,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Evgeni Kuntsevich on 02.09.2016.
  */
 public class HelperMethods {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    public static String readString() throws ExitException {
+    public static String readString() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = "";
 
         try {
@@ -29,15 +30,16 @@ public class HelperMethods {
         return inputString;
     }
 
-    public static List<Double> readTwoDigits() throws ExitException {
+    public static List<Double> readTwoDigits() {
         List<Double> digits = new LinkedList();
 
         ConsoleMessenger.enterFirstDigit();
 
         while (true) {
             try {
-                String inputString = HelperMethods.readString();
+                String inputString = readString();
                 digits.add(Double.valueOf(inputString));
+
                 if (digits.size() == 2) break;
                 ConsoleMessenger.enterSecondDigit();
             } catch (NumberFormatException e) {
@@ -49,17 +51,17 @@ public class HelperMethods {
         return digits;
     }
 
-    public static List<Double> readTwoDigitsDivision() throws ExitException, DivisionByZeroException {
+    public static List<Double> readTwoDigitsDivision() throws DivisionByZeroException {
         List<Double> digits = new LinkedList();
+        ConsoleMessenger.enterFirstDigit();
 
         while (true) {
             try {
-                ConsoleMessenger.enterFirstDigit();
-                String inputString = HelperMethods.readString();
+                String inputString = readString();
                 digits.add(Double.valueOf(inputString));
 
                 ConsoleMessenger.enterSecondDigit();
-                inputString = HelperMethods.readString();
+                inputString = readString();
 
                 if (Double.valueOf(inputString) == 0)
                     throw new DivisionByZeroException();
@@ -102,5 +104,30 @@ public class HelperMethods {
 
         if (s[1].equals("0")) return s[0];
         return digitToString;
+    }
+
+    public static Locale getLocale() throws ExitException {
+        while (true) {
+            int inputNumber = 0;
+
+            try {
+                inputNumber = getNumber();
+            } catch (NumberFormatException e) {
+                ConsoleMessenger.enteredNoNumberLanguage();
+                continue;
+            }
+
+            if (inputNumber == 1) {
+                ConsoleMessenger.selectedEnglish();
+                return new Locale("en");
+            } else if (inputNumber == 2) {
+                ConsoleMessenger.selectedRussian();
+                return new Locale("ru");
+            } else ConsoleMessenger.enteredNoNumberLanguage();
+        }
+    }
+
+    public static ResourceBundle getBundleForLocale() throws ExitException {
+        return ResourceBundle.getBundle("messages", getLocale());
     }
 }

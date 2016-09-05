@@ -11,6 +11,13 @@ import com.jgp7.helpers.HelperMethods;
  */
 public class Calculator {
     public void run() {
+        try {
+            ConsoleMessenger.selectLanguage();
+        } catch (ExitException e) {
+            ConsoleMessenger.exitLang();
+            return;
+        }
+
         ConsoleMessenger.start();
 
         while (true) {
